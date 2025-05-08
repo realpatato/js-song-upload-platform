@@ -9,11 +9,47 @@ function generateSongInfoContainer() {
   */
   //finds songs container
   let songsContainer = document.getElementById("songs-container")
+  //finds amount of elements in songsContainer for the id for newly created row
+  let songsContainerLen = songsContainer.children.length
+  //determines if a row needs to be created
+  if (songsContainerLen == 0) {
+    //creates one if there is nothing, because, there is nothing
+    let newRow = document.createElement("div")
+    //sets the class and id attributes
+    newRow.setAttribute("class", "song-info row")
+    newRow.setAttribute("id", songsContainerLen)
+    //sets variable name to curRow to work later
+    var curRow = newRow
+    //adds it to container
+    songsContainer.appendChild(curRow)
+  } else {
+    //getting length of the latest row
+    let latestRowID = songsContainerLen - 1
+    let latestRowLen = document.getElementById(latestRowID).children.length
+    console.log(latestRowLen)
+    if (latestRowLen == 3) {
+      //creates new row because latest row is full
+      let newRow = document.createElement("div")
+      //sets the class and id attributes
+      newRow.setAttribute("class", "song-info row")
+      newRow.setAttribute("id", songsContainerLen)
+      //sets variable name to curRow to work later
+      var curRow = newRow
+      //adds it to container
+      songsContainer.appendChild(curRow)
+    } else {
+      //sets curRow to the latest row since nothing needed to be created
+      var curRow = document.getElementById(latestRowID)
+    }
+  }
   //creates new container for song info
   let newSongInfoContainer = document.createElement("div")
-  newSongInfoContainer.setAttribute("class", "song-info")
-  //creates id for new container and sets id
-  let newSongInfoContainerID = songsContainer.children.length
+  newSongInfoContainer.setAttribute("class", "song-info col")
+  //creating id for new container
+  let curRowID = curRow.getAttribute("id")
+  let curRowLen = curRow.children.length
+  let newSongInfoContainerID = curRowID + curRowLen
+  //sets the id attribute to newly found value
   newSongInfoContainer.setAttribute("id", newSongInfoContainerID)
   //creates song name heading and adds it to the new container
   let songNameH = document.createElement("h2")
@@ -26,8 +62,8 @@ function generateSongInfoContainer() {
   songAudio.setAttribute("controls", "true")
   songAudio.setAttribute("src", "#")
   newSongInfoContainer.appendChild(songAudio)
-  //adds info container to songs container
-  songsContainer.appendChild(newSongInfoContainer)
+  //adds info container to row container
+  curRow.appendChild(newSongInfoContainer)
   //returns object to be used seperately
   return newSongInfoContainer
 }
@@ -58,7 +94,7 @@ function submitSongInfo() {
   //creates new song info container
   let songInfoContainer=generateSongInfoContainer()
   //creates variable to store the children of the container
-  songInfoContainerChildren = songInfoContainer.children
+  let songInfoContainerChildren = songInfoContainer.children
   //starts loop to iterate over each item in songInfoContainer
   for (let i = 0; i < songInfoContainerChildren.length; i++) {
     //if its the last piece of data (the audio) use src instead of inner HTML
