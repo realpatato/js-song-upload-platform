@@ -1,3 +1,4 @@
+//CODE FOR SUBMITTING FILES AND CREATING ROW AND COLUMNS
 //get the submit button in the form
 let submitButton = document.getElementById("submit");
 //add click detection that activates function
@@ -102,5 +103,22 @@ function submitSongInfo() {
     } else { //otherwise, use inner HTML
       songInfoContainerChildren[i].innerHTML = songInfo[i];
     }
+  }
+}
+
+//CODE FOR CHANGING THEMES (LIGHT AND DARK MODE)
+//get button for them change
+let themeChangeButton = document.getElementById("change-theme");
+//add event listener to button to run function to change theme
+themeChangeButton.addEventListener("click", changeTheme);
+
+function changeTheme() {
+  //get the document body
+  let docBody = document.body
+  let current_theme = docBody.getAttribute("class")
+  if (current_theme == "dark") {
+    docBody.setAttribute("class", "light")
+  } else {
+    docBody.setAttribute("class", "dark")
   }
 }
