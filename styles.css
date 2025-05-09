@@ -130,7 +130,7 @@ body {
   color: var(--md-sys-color-primary);
 }
 
-.form {
+.top {
   color: var(--md-sys-color-on-tertiary-container);
   background-color: var(--md-sys-color-tertiary-container);
 }
@@ -144,4 +144,10 @@ label {
   width: 7.75em;
   margin: 10px 10px;
   text-align:right;
+}
+
+#audio {
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }

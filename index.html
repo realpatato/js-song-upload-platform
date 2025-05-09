@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import '@material/web/all.js';
+      import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -8,18 +21,25 @@
   </head>
   <body class="dark">
     <div class="row">
-      <div class="col form">
+      <div class="col top">
+        <h1>Welcome!</h1>
+        <hr>
+        <p>Welcome to ASP! The platform where anyone can upload music!</p>
+        <p>I created this site in order to share my music, and provide a place for others to do the same.</p>
+        <p>Please don't upload copyrighted music, I'd like to keep this site up.</p>
+      </div>
+      <div class="col top">
         <h1>Submit Song</h1>
         <hr>
         <form action="javascript:void(0)" id="song-submit-form">
           <br>
-          <label for="song-name">Song Name: </label>
-          <input type="text" name="song-name" id="song-name"><br><br>
-          <label for="artist">Artist: </label>
-          <input type="text" name="artist" id="artist"><br><br>
-          <label for="audio">Input Audio File: </label>
-          <input type="file" name="audio" id="audio"><br><br>
-          <button class="submit-button" id="submit">Submit</button>
+          <md-filled-text-field id="song-name" label="Song Name" value=""></md-filled-text-field><br><br>
+          <md-filled-text-field id="artist" label="Artist" value=""></md-filled-text-field><br><br>
+          <md-outlined-button id="upload-file-button">
+            Input Audio File
+            <input type="file" name="audio" id="audio">
+          </md-outlined-button>
+          <md-filled-button id="submit">Submit</md-filled-button>
         </form>
       </div>
     </div>

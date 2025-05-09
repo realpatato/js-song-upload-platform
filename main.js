@@ -1,4 +1,9 @@
 //CODE FOR SUBMITTING FILES AND CREATING ROW AND COLUMNS
+let uploadFileButton = document.getElementById("upload-file-button");
+uploadFileButton.addEventListener("click", function() {
+  document.getElementById("audio").click()
+})
+
 //get the submit button in the form
 let submitButton = document.getElementById("submit");
 //add click detection that activates function
